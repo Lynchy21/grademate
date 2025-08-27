@@ -382,10 +382,11 @@ const Calculator = () => {
                       <Input
                         id={`credits-${subject.id}`}
                         type="number"
-                        min="1"
+                        min="0.5"
                         max="5"
+                        step="0.5"
                         value={subject.credits}
-                        onChange={(e) => updateSubject(semester.id, subject.id, 'credits', parseInt(e.target.value) || 1)}
+                        onChange={(e) => updateSubject(semester.id, subject.id, 'credits', parseFloat(e.target.value) || 1)}
                         className="mt-1"
                       />
                     </div>
