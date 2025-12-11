@@ -109,7 +109,7 @@ const Index = () => {
                 <span className="text-xl font-bold text-white">GradeMate</span>
               </div>
               <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-white/90 transition-all duration-300 shadow-lg px-4 py-2 text-sm w-fit">
-                Made with 💜 by Abhishek Kumaran (CSE A - 23CS052)
+                Vibe Coded with 💜 by Abhishek Kumaran (CSE A - 23CS052)
               </div>
             </div>
 
