@@ -58,6 +58,7 @@ const Index = () => {
               >
                 Contact
               </Button>
+              </a>
               <Button 
                 variant="ghost" 
                 className="text-white/90 hover:text-white text-lg"
