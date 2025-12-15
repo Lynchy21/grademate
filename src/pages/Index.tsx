@@ -18,10 +18,10 @@ const Index = () => {
         <Button 
           variant="ghost" 
           size="sm" 
-          className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-white/90 hover:bg-white/20 hover:text-white transition-all duration-300 shadow-lg fixed top-6 right-6 z-50"
+          className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-white/90 hover:bg-white/20 hover:text-white transition-all duration-300 shadow-lg fixed top-3 right-3 z-50 text-[10px] px-1.5 py-0.5 h-6 md:top-6 md:right-6 md:text-sm md:px-3 md:h-9 md:rounded-xl"
           onClick={() => window.open("https://github.com/Lynchy21/grademate", "_blank")}
         >
-          <Github className="w-4 h-4 mr-2" />
+          <Github className="w-2.5 h-2.5 mr-0.5 md:w-4 md:h-4 md:mr-2" />
           View on GitHub
         </Button>
       </header>
