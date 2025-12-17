@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, Trash2, Download, Calculator as CalculatorIcon } from "lucide-react";
+import { Plus, Trash2, Download, Calculator as CalculatorIcon, BookOpen } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { jsPDF } from 'jspdf';
 
@@ -407,6 +407,26 @@ const Calculator = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Empty State */}
+        {semesters.length === 0 && (
+          <div className="mb-8">
+            <Card className="bg-card border-border shadow-card">
+              <CardContent className="p-12 text-center">
+                <div className="w-20 h-20 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
+                  <BookOpen className="w-10 h-10 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">No Semesters Yet</h3>
+                <p className="text-muted-foreground mb-4">
+                  Start by adding your first semester to calculate your GPA
+                </p>
+                <p className="text-sm text-muted-foreground/70">
+                  You can add up to 10 semesters and 12 subjects per semester
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Semesters */}
         <div className="space-y-6 mb-8">
