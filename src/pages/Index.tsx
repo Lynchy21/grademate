@@ -23,7 +23,7 @@ const Index = () => {
           variant="ghost" 
           size="sm" 
           className="hidden md:flex bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white/90 hover:bg-white/20 hover:text-white transition-all duration-300 shadow-lg fixed top-6 right-6 z-50 text-sm px-3 h-9"
-          onClick={() => window.open("https://github.com/Lynchy21", "_blank")}
+          onClick={() => window.open("https://github.com/Lynchy21/grademate", "_blank")}
         >
           <Github className="w-4 h-4 mr-2" />
           View on GitHub
