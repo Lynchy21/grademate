@@ -463,16 +463,21 @@ const Calculator = () => {
                     </div>
                     <div>
                       <Label htmlFor={`credits-${subject.id}`}>Credits</Label>
-                      <Input
-                        id={`credits-${subject.id}`}
-                        type="number"
-                        min="0.5"
-                        max="5"
-                        step="0.5"
-                        value={subject.credits}
-                        onChange={(e) => updateSubject(semester.id, subject.id, 'credits', parseFloat(e.target.value) || 1)}
-                        className="mt-1"
-                      />
+                      <Select
+                        value={subject.credits.toString()}
+                        onValueChange={(value) => updateSubject(semester.id, subject.id, 'credits', parseFloat(value))}
+                      >
+                        <SelectTrigger className="mt-1">
+                          <SelectValue placeholder="Select credits" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1">1</SelectItem>
+                          <SelectItem value="1.5">1.5</SelectItem>
+                          <SelectItem value="2">2</SelectItem>
+                          <SelectItem value="3">3</SelectItem>
+                          <SelectItem value="4">4</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div className="flex items-end">
                       <Button
