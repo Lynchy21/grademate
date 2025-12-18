@@ -5,6 +5,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Plus, Trash2, Download, Calculator as CalculatorIcon, BookOpen } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { jsPDF } from 'jspdf';
@@ -31,6 +41,7 @@ const gradePoints: Record<string, number> = {
 const Calculator = () => {
   const navigate = useNavigate();
   const [semesters, setSemesters] = useState<Semester[]>([]);
+  const [semesterToDelete, setSemesterToDelete] = useState<string | null>(null);
   const { toast } = useToast();
 
   const calculateGPA = (subjects: Subject[]): number => {
@@ -149,6 +160,12 @@ const Calculator = () => {
 
   const removeSemester = (semesterId: string) => {
     setSemesters(semesters.filter(semester => semester.id !== semesterId));
+    setSemesterToDelete(null);
+  };
+
+  const getSemesterToDeleteInfo = () => {
+    if (!semesterToDelete) return null;
+    return semesters.find(s => s.id === semesterToDelete);
   };
 
   const generatePageCanvas = (pageSemesters: Semester[], pageNumber: number, totalPages: number): HTMLCanvasElement => {
@@ -441,7 +458,7 @@ const Calculator = () => {
                     GPA: <span className="font-semibold text-primary">{semester.gpa.toFixed(2)}</span>
                   </span>
                   <Button
-                    onClick={() => removeSemester(semester.id)}
+                    onClick={() => setSemesterToDelete(semester.id)}
                     variant="destructive"
                     size="sm"
                   >
@@ -549,6 +566,31 @@ const Calculator = () => {
             </CardContent>
           </Card>
         )}
+        
+        {/* Delete Confirmation Dialog */}
+        <AlertDialog open={!!semesterToDelete} onOpenChange={(open) => !open && setSemesterToDelete(null)}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete Semester {getSemesterToDeleteInfo()?.number}?</AlertDialogTitle>
+              <AlertDialogDescription>
+                {getSemesterToDeleteInfo()?.subjects.length ? (
+                  <>This semester has {getSemesterToDeleteInfo()?.subjects.length} subject(s). This action cannot be undone.</>
+                ) : (
+                  <>Are you sure you want to delete this semester? This action cannot be undone.</>
+                )}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => semesterToDelete && removeSemester(semesterToDelete)}
+                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              >
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );
